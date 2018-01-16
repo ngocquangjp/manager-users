@@ -15,14 +15,16 @@ class User extends  CActiveRecord
 
     public function rules()
     {
-        return array(
+        return array
+        (
             array('username','first_name','last_name','phone','birthday','email','password','required'),
             array('email','email')
         );
     }
     public function attributeLabels()
     {
-        return array(
+        return array
+        (
             'id' => 'id',
             'username' => 'username',
             'first_name'=>'first_name',

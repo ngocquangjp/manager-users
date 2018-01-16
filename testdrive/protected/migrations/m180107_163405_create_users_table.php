@@ -20,15 +20,4 @@ class m180107_163405_create_users_table extends CDbMigration
 	{
 		$this->dropTable('users');
 	}
-
-	/*
-	// Use safeUp/safeDown to do migration with transaction
-	public function safeUp()
-	{
-	}
-
-	public function safeDown()
-	{
-	}
-	*/
 }
