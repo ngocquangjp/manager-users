@@ -33,7 +33,7 @@ class CFileCache extends CCache
 	/**
 	 * @var integer the permission to be set for directory to store cache files
 	 * This value will be used by PHP chmod function.
-	 * Defaults to 0777, meaning the directory can be read, written and executed by all users.
+	 * Defaults to 0777, meaning the directory can be read, written and executed by all user.
 	 * @since 1.1.16
 	 */
 	public $cachePathMode=0777;
@@ -44,7 +44,7 @@ class CFileCache extends CCache
 	/**
 	 * @var integer the permission to be set for new cache files.
 	 * This value will be used by PHP chmod function.
-	 * Defaults to 0666, meaning the file is read-writable by all users.
+	 * Defaults to 0666, meaning the file is read-writable by all user.
 	 * @since 1.1.16
 	 */
 	public $cacheFileMode=0666;

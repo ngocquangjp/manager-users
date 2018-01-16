@@ -331,7 +331,7 @@ abstract class CApplication extends CModule
 	/**
 	 * Specifies which language the application is targeted to.
 	 *
-	 * This is the language that the application displays to end users.
+	 * This is the language that the application displays to end user.
 	 * If set null, it uses the {@link sourceLanguage source language}.
 	 *
 	 * Unless your application needs to support multiple languages, you should always
@@ -617,7 +617,7 @@ abstract class CApplication extends CModule
 	/**
 	 * Returns a global value.
 	 *
-	 * A global value is one that is persistent across users sessions and requests.
+	 * A global value is one that is persistent across user sessions and requests.
 	 * @param string $key the name of the value to be returned
 	 * @param mixed $defaultValue the default value. If the named global value is not found, this will be returned instead.
 	 * @return mixed the named global value
@@ -636,7 +636,7 @@ abstract class CApplication extends CModule
 	/**
 	 * Sets a global value.
 	 *
-	 * A global value is one that is persistent across users sessions and requests.
+	 * A global value is one that is persistent across user sessions and requests.
 	 * Make sure that the value is serializable and unserializable.
 	 * @param string $key the name of the value to be saved
 	 * @param mixed $value the global value to be saved. It must be serializable.

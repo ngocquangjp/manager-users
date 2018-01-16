@@ -9,7 +9,7 @@
  */
 
 /**
- * CHttpException represents an exception caused by invalid operations of end-users.
+ * CHttpException represents an exception caused by invalid operations of end-user.
  *
  * The HTTP error code can be obtained via {@link statusCode}.
  * Error handlers may use this status code to decide how to format the error page.

@@ -24,7 +24,7 @@
  * CArrayDataProvider may be used in the following way:
  * <pre>
  * $rawData=Yii::app()->db->createCommand('SELECT * FROM tbl_user')->queryAll();
- * // or using: $rawData=User::model()->findAll();
+ * // or using: $rawData=user::model()->findAll();
  * $dataProvider=new CArrayDataProvider($rawData, array(
  *     'id'=>'user',
  *     'sort'=>array(

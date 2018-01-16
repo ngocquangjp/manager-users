@@ -44,7 +44,7 @@ class CSqliteTest extends CTestCase
 		$this->assertEquals('posts',$table->name);
 		$this->assertEquals('\'posts\'',$table->rawName);
 		$this->assertEquals('id',$table->primaryKey);
-		$this->assertEquals(array('author_id'=>array('users','id')),$table->foreignKeys);
+		$this->assertEquals(array('author_id'=>array('user','id')),$table->foreignKeys);
 		$this->assertTrue($table->sequenceName==='');
 		$this->assertEquals(5,count($table->columns));
 
@@ -228,30 +228,30 @@ class CSqliteTest extends CTestCase
 
 	public function testResetSequence()
 	{
-		$max=$this->db->createCommand("SELECT MAX(id) FROM users")->queryScalar();
-		$this->db->createCommand("DELETE FROM users")->execute();
-		$this->db->createCommand("INSERT INTO users (username, password, email) VALUES ('user4','pass4','email4')")->execute();
-		$max2=$this->db->createCommand("SELECT MAX(id) FROM users")->queryScalar();
+		$max=$this->db->createCommand("SELECT MAX(id) FROM user")->queryScalar();
+		$this->db->createCommand("DELETE FROM user")->execute();
+		$this->db->createCommand("INSERT INTO user (username, password, email) VALUES ('user4','pass4','email4')")->execute();
+		$max2=$this->db->createCommand("SELECT MAX(id) FROM user")->queryScalar();
 		$this->assertEquals($max+1,$max2);
 
-		$userTable=$this->db->schema->getTable('users');
+		$userTable=$this->db->schema->getTable('user');
 
-		$this->db->createCommand("DELETE FROM users")->execute();
+		$this->db->createCommand("DELETE FROM user")->execute();
 		$this->db->schema->resetSequence($userTable);
-		$this->db->createCommand("INSERT INTO users (username, password, email) VALUES ('user4','pass4','email4')")->execute();
-		$max=$this->db->createCommand("SELECT MAX(id) FROM users")->queryScalar();
+		$this->db->createCommand("INSERT INTO user (username, password, email) VALUES ('user4','pass4','email4')")->execute();
+		$max=$this->db->createCommand("SELECT MAX(id) FROM user")->queryScalar();
 		$this->assertEquals(1,$max);
-		$this->db->createCommand("INSERT INTO users (username, password, email) VALUES ('user4','pass4','email4')")->execute();
-		$max=$this->db->createCommand("SELECT MAX(id) FROM users")->queryScalar();
+		$this->db->createCommand("INSERT INTO user (username, password, email) VALUES ('user4','pass4','email4')")->execute();
+		$max=$this->db->createCommand("SELECT MAX(id) FROM user")->queryScalar();
 		$this->assertEquals(2,$max);
 
-		$this->db->createCommand("DELETE FROM users")->execute();
+		$this->db->createCommand("DELETE FROM user")->execute();
 		$this->db->schema->resetSequence($userTable,10);
-		$this->db->createCommand("INSERT INTO users (username, password, email) VALUES ('user4','pass4','email4')")->execute();
-		$max=$this->db->createCommand("SELECT MAX(id) FROM users")->queryScalar();
+		$this->db->createCommand("INSERT INTO user (username, password, email) VALUES ('user4','pass4','email4')")->execute();
+		$max=$this->db->createCommand("SELECT MAX(id) FROM user")->queryScalar();
 		$this->assertEquals(10,$max);
-		$this->db->createCommand("INSERT INTO users (username, password, email) VALUES ('user4','pass4','email4')")->execute();
-		$max=$this->db->createCommand("SELECT MAX(id) FROM users")->queryScalar();
+		$this->db->createCommand("INSERT INTO user (username, password, email) VALUES ('user4','pass4','email4')")->execute();
+		$max=$this->db->createCommand("SELECT MAX(id) FROM user")->queryScalar();
 		$this->assertEquals(11,$max);
 	}
 
@@ -283,17 +283,17 @@ class CSqliteTest extends CTestCase
 	{
 		$this->db->schema->refresh();
 		$this->assertArrayHasKey('profiles',$this->db->schema->tables);
-		$this->assertArrayHasKey('users',$this->db->schema->tables);
+		$this->assertArrayHasKey('user',$this->db->schema->tables);
 		$this->assertArrayNotHasKey('profiles_renamed',$this->db->schema->tables);
 		$this->assertArrayNotHasKey('users_renamed',$this->db->schema->tables);
 
 		$this->db->schema->refresh();
 		$this->db->createCommand($this->db->schema->renameTable('profiles','profiles_renamed'))->execute();
-		$this->db->createCommand($this->db->schema->renameTable('users','users_renamed'))->execute();
+		$this->db->createCommand($this->db->schema->renameTable('user','users_renamed'))->execute();
 
 		$this->db->schema->refresh();
 		$this->assertArrayNotHasKey('profiles',$this->db->schema->tables);
-		$this->assertArrayNotHasKey('users',$this->db->schema->tables);
+		$this->assertArrayNotHasKey('user',$this->db->schema->tables);
 		$this->assertArrayHasKey('profiles_renamed',$this->db->schema->tables);
 		$this->assertArrayHasKey('users_renamed',$this->db->schema->tables);
 	}

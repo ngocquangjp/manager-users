@@ -39,7 +39,7 @@ class User2 extends CActiveRecord
 
 	public function tableName()
 	{
-		return 'test.users';
+		return 'test.user';
 	}
 }
 

@@ -1,7 +1,7 @@
 -- Double EOL symbol (\n\n) used as separator. This means that query string like "{SQL1}\n\n{SQL2}" would
 -- cause two queries to the RDBMS: first "{SQL1}" and second "{SQL2}".
 
--- Create 'users' table.
+-- Create 'user' table.
 CREATE TABLE "users" (
 	"id" INTEGER NOT NULL,
 	"username" VARCHAR2(128 CHAR) NOT NULL,
@@ -226,7 +226,7 @@ ALTER TABLE "types" ADD CHECK ("float_col" IS NOT NULL);
 
 ALTER TABLE "types" ADD CHECK ("bool_col" IS NOT NULL);
 
--- Data for the 'users' table.
+-- Data for the 'user' table.
 INSERT INTO "users" ("username", "password", "email") VALUES ('user1', 'pass1', 'email1');
 
 INSERT INTO "users" ("username", "password", "email") VALUES ('user2', 'pass2', 'email2');

@@ -30,7 +30,7 @@
  *
  * By configuring {@link attributes}, one can perform more complex sorts that may
  * consist of things like compound attributes (e.g. sort based on the combination of
- * first name and last name of users).
+ * first name and last name of user).
  *
  * The property {@link attributes} should be an array of key-value pairs, where the keys
  * represent the attribute names, while the values represent the virtual attribute definitions.

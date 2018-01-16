@@ -63,7 +63,7 @@ CREATE TABLE [dbo].[types](
 END
 GO
 
--- create 'users' table
+-- create 'user' table
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -247,7 +247,7 @@ GO
 -- Tables' comments (MS_Description extended property)
 -- ---------------------------------------------------
 
--- 'users' table column comments
+-- 'user' table column comments
 EXEC sys.sp_addextendedproperty
 	@name=N'MS_Description', @value=N'Name of the user',
 	@level0type=N'SCHEMA', @level0name=N'dbo',
@@ -291,7 +291,7 @@ GO
 -- Tables' actual testing real data
 -- --------------------------------
 
--- 'users' table data
+-- 'user' table data
 INSERT INTO users (username, password, email) VALUES ('user1','pass1','email1')
 GO
 INSERT INTO users (username, password, email) VALUES ('user2','pass2','email2')

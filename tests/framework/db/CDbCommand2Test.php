@@ -409,12 +409,12 @@ class CDbCommand2Test extends CTestCase
 		// simple query
 		$command=$this->_connection->createCommand()
 			->select('username, password')
-			->from('users')
+			->from('user')
 			->where('email=:email or email=:email2', array(':email'=>'email2', ':email2'=>'email4'))
 			->order('username desc')
 			->limit(2,1);
 
-		$sql="SELECT \"username\", \"password\"\nFROM 'users'\nWHERE email=:email or email=:email2\nORDER BY \"username\" DESC LIMIT 2 OFFSET 1";
+		$sql="SELECT \"username\", \"password\"\nFROM 'user'\nWHERE email=:email or email=:email2\nORDER BY \"username\" DESC LIMIT 2 OFFSET 1";
 		$this->assertEquals($sql, $command->text);
 
 		$rows=$command->queryAll();
@@ -427,7 +427,7 @@ class CDbCommand2Test extends CTestCase
 	{
 		$command=$this->_connection->createCommand(array(
 			'select'=>'username, password',
-			'from'=>'users',
+			'from'=>'user',
 			'where'=>'email=:email or email=:email2',
 			'params'=>array(':email'=>'email2', ':email2'=>'email4'),
 			'order'=>'username desc',
@@ -435,7 +435,7 @@ class CDbCommand2Test extends CTestCase
 			'offset'=>1,
 		));
 
-		$sql="SELECT \"username\", \"password\"\nFROM 'users'\nWHERE email=:email or email=:email2\nORDER BY \"username\" DESC LIMIT 2 OFFSET 1";
+		$sql="SELECT \"username\", \"password\"\nFROM 'user'\nWHERE email=:email or email=:email2\nORDER BY \"username\" DESC LIMIT 2 OFFSET 1";
 		$this->assertEquals($sql, $command->text);
 
 		$rows=$command->queryAll();

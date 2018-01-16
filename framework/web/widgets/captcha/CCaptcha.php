@@ -53,7 +53,7 @@ class CCaptcha extends CWidget
 	 * @var boolean whether to allow clicking on the CAPTCHA image to refresh the CAPTCHA letters.
 	 * Defaults to false. Hint: you may want to set {@link showRefreshButton} to false if you set
 	 * this property to be true because they serve for the same purpose.
-	 * To enhance accessibility, you may set {@link imageOptions} to provide hints to end-users that
+	 * To enhance accessibility, you may set {@link imageOptions} to provide hints to end-user that
 	 * the image is clickable.
 	 */
 	public $clickableImage=false;

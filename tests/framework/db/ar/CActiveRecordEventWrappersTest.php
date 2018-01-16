@@ -111,7 +111,7 @@ class CActiveRecordEventWrappersTest extends CTestCase
 		UserWithWrappers::model()->findByPk(1);
 		$this->assertEquals(UserWithWrappers::getCounter('beforeFind'),1);
 
-		UserWithWrappers::model()->findBySql('SELECT * FROM users');
+		UserWithWrappers::model()->findBySql('SELECT * FROM user');
 		$this->assertEquals(UserWithWrappers::getCounter('beforeFind'),1);
 
 		UserWithWrappers::model()->findAll();
@@ -123,7 +123,7 @@ class CActiveRecordEventWrappersTest extends CTestCase
 		UserWithWrappers::model()->findAllByPk(1);
 		$this->assertEquals(UserWithWrappers::getCounter('beforeFind'),1);
 
-		UserWithWrappers::model()->findAllBySql('SELECT * FROM users');
+		UserWithWrappers::model()->findAllBySql('SELECT * FROM user');
 		$this->assertEquals(UserWithWrappers::getCounter('beforeFind'),1);
 
 		// test for query with no result
@@ -136,7 +136,7 @@ class CActiveRecordEventWrappersTest extends CTestCase
 		$this->assertEmpty(UserWithWrappers::model()->findByPk(1000));
 		$this->assertEquals(UserWithWrappers::getCounter('beforeFind'),1);
 
-		$this->assertEmpty(UserWithWrappers::model()->findBySql('SELECT * FROM users WHERE 1=0'));
+		$this->assertEmpty(UserWithWrappers::model()->findBySql('SELECT * FROM user WHERE 1=0'));
 		$this->assertEquals(UserWithWrappers::getCounter('beforeFind'),1);
 
 		$this->assertEmpty(UserWithWrappers::model()->findAll('1=0'));
@@ -148,7 +148,7 @@ class CActiveRecordEventWrappersTest extends CTestCase
 		$this->assertEmpty(UserWithWrappers::model()->findAllByPk(array(1000,1001)));
 		$this->assertEquals(UserWithWrappers::getCounter('beforeFind'),1);
 
-		$this->assertEmpty(UserWithWrappers::model()->findAllBySql('SELECT * FROM users WHERE 1=0'));
+		$this->assertEmpty(UserWithWrappers::model()->findAllBySql('SELECT * FROM user WHERE 1=0'));
 		$this->assertEquals(UserWithWrappers::getCounter('beforeFind'),1);
 
 	}
@@ -187,7 +187,7 @@ class CActiveRecordEventWrappersTest extends CTestCase
 		$user = UserWithWrappers::model()->findByPk(1);
 		$this->assertCriteriaApplied(array($user), $criteria, 1, $assertations);
 
-		$user = UserWithWrappers::model()->findBySql('SELECT * FROM users');
+		$user = UserWithWrappers::model()->findBySql('SELECT * FROM user');
 		$this->assertCriteriaApplied(array($user), $criteria, 1, array());
 
 		$users = UserWithWrappers::model()->findAll();
@@ -199,7 +199,7 @@ class CActiveRecordEventWrappersTest extends CTestCase
 		$users = UserWithWrappers::model()->findAllByPk(array(1,2,3,4));
 		$this->assertCriteriaApplied($users, $criteria, $count, $assertations);
 
-		$users = UserWithWrappers::model()->findAllBySql('SELECT * FROM users');
+		$users = UserWithWrappers::model()->findAllBySql('SELECT * FROM user');
 		$this->assertCriteriaApplied($users, $criteria, 4, array());
 	}
 
@@ -223,7 +223,7 @@ class CActiveRecordEventWrappersTest extends CTestCase
 		$this->assertEquals(PostWithWrappers::getCounter('beforeFind'),1);
 		$this->assertEquals(CommentWithWrappers::getCounter('beforeFind'),1);
 
-		UserWithWrappers::model()->with('posts.comments')->findBySql('SELECT * FROM users');
+		UserWithWrappers::model()->with('posts.comments')->findBySql('SELECT * FROM user');
 		$this->assertEquals(UserWithWrappers::getCounter('beforeFind'),1);
 		$this->assertEquals(PostWithWrappers::getCounter('beforeFind'),1);
 		$this->assertEquals(CommentWithWrappers::getCounter('beforeFind'),1);
@@ -243,7 +243,7 @@ class CActiveRecordEventWrappersTest extends CTestCase
 		$this->assertEquals(PostWithWrappers::getCounter('beforeFind'),1);
 		$this->assertEquals(CommentWithWrappers::getCounter('beforeFind'),1);
 
-		UserWithWrappers::model()->with('posts.comments')->findAllBySql('SELECT * FROM users');
+		UserWithWrappers::model()->with('posts.comments')->findAllBySql('SELECT * FROM user');
 		$this->assertEquals(UserWithWrappers::getCounter('beforeFind'),1);
 		$this->assertEquals(PostWithWrappers::getCounter('beforeFind'),1);
 		$this->assertEquals(CommentWithWrappers::getCounter('beforeFind'),1);
@@ -264,7 +264,7 @@ class CActiveRecordEventWrappersTest extends CTestCase
 		$this->assertEquals(PostWithWrappers::getCounter('beforeFind'),1);
 		$this->assertEquals(CommentWithWrappers::getCounter('beforeFind'),1);
 
-		$this->assertEmpty(UserWithWrappers::model()->with('posts.comments')->findBySql('SELECT * FROM users WHERE id=1000'));
+		$this->assertEmpty(UserWithWrappers::model()->with('posts.comments')->findBySql('SELECT * FROM user WHERE id=1000'));
 		$this->assertEquals(UserWithWrappers::getCounter('beforeFind'),1);
 		$this->assertEquals(PostWithWrappers::getCounter('beforeFind'),1);
 		$this->assertEquals(CommentWithWrappers::getCounter('beforeFind'),1);
@@ -284,7 +284,7 @@ class CActiveRecordEventWrappersTest extends CTestCase
 		$this->assertEquals(PostWithWrappers::getCounter('beforeFind'),1);
 		$this->assertEquals(CommentWithWrappers::getCounter('beforeFind'),1);
 
-		$this->assertEmpty(UserWithWrappers::model()->with('posts.comments')->findAllBySql('SELECT * FROM users WHERE 1=0'));
+		$this->assertEmpty(UserWithWrappers::model()->with('posts.comments')->findAllBySql('SELECT * FROM user WHERE 1=0'));
 		$this->assertEquals(UserWithWrappers::getCounter('beforeFind'),1);
 		$this->assertEquals(PostWithWrappers::getCounter('beforeFind'),1);
 		$this->assertEquals(CommentWithWrappers::getCounter('beforeFind'),1);
@@ -310,7 +310,7 @@ class CActiveRecordEventWrappersTest extends CTestCase
 		$this->assertTrue($user->hasRelated('posts'));
 		$this->assertCriteriaApplied($user->posts, $criteria, $count, $assertations);
 
-		$user = UserWithWrappers::model()->with('posts.comments')->findBySql('SELECT * FROM users WHERE id=2');
+		$user = UserWithWrappers::model()->with('posts.comments')->findBySql('SELECT * FROM user WHERE id=2');
 		$this->assertTrue($user->hasRelated('posts'));
 		$this->assertCriteriaApplied($user->posts, $criteria, $count, $assertations);
 
@@ -329,7 +329,7 @@ class CActiveRecordEventWrappersTest extends CTestCase
 		$this->assertTrue($user->hasRelated('posts'));
 		$this->assertCriteriaApplied($user->posts, $criteria, $count, $assertations);
 
-		$users = UserWithWrappers::model()->with('posts.comments')->findAllBySql('SELECT * FROM users WHERE id=2');
+		$users = UserWithWrappers::model()->with('posts.comments')->findAllBySql('SELECT * FROM user WHERE id=2');
 		$user = reset($users);
 		$this->assertTrue($user->hasRelated('posts'));
 		$this->assertCriteriaApplied($user->posts, $criteria, $count, $assertations);
@@ -412,7 +412,7 @@ class CActiveRecordEventWrappersTest extends CTestCase
 		UserWithWrappers::model()->findByPk(1);
 		$this->assertEquals(UserWithWrappers::getCounter('afterFind'),1);
 
-		UserWithWrappers::model()->findBySql('SELECT * FROM users');
+		UserWithWrappers::model()->findBySql('SELECT * FROM user');
 		$this->assertEquals(UserWithWrappers::getCounter('afterFind'),1);
 
 		UserWithWrappers::model()->findAll();
@@ -424,7 +424,7 @@ class CActiveRecordEventWrappersTest extends CTestCase
 		UserWithWrappers::model()->findAllByPk(1);
 		$this->assertEquals(UserWithWrappers::getCounter('afterFind'),1);
 
-		UserWithWrappers::model()->findAllBySql('SELECT * FROM users');
+		UserWithWrappers::model()->findAllBySql('SELECT * FROM user');
 		$this->assertEquals(UserWithWrappers::getCounter('afterFind'),4);
 
 		// test for query with no result
@@ -437,7 +437,7 @@ class CActiveRecordEventWrappersTest extends CTestCase
 		UserWithWrappers::model()->findByPk(1000);
 		$this->assertEquals(UserWithWrappers::getCounter('afterFind'),0);
 
-		UserWithWrappers::model()->findBySql('SELECT * FROM users WHERE 1=0');
+		UserWithWrappers::model()->findBySql('SELECT * FROM user WHERE 1=0');
 		$this->assertEquals(UserWithWrappers::getCounter('afterFind'),0);
 
 		UserWithWrappers::model()->findAll('1=0');
@@ -449,7 +449,7 @@ class CActiveRecordEventWrappersTest extends CTestCase
 		UserWithWrappers::model()->findAllByPk(array(1000,1001));
 		$this->assertEquals(UserWithWrappers::getCounter('afterFind'),0);
 
-		UserWithWrappers::model()->findAllBySql('SELECT * FROM users WHERE 1=0');
+		UserWithWrappers::model()->findAllBySql('SELECT * FROM user WHERE 1=0');
 		$this->assertEquals(UserWithWrappers::getCounter('afterFind'),0);
 	}
 
@@ -473,7 +473,7 @@ class CActiveRecordEventWrappersTest extends CTestCase
 		$this->assertEquals(PostWithWrappers::getCounter('afterFind'),3);
 		$this->assertEquals(CommentWithWrappers::getCounter('afterFind'),6);
 
-		UserWithWrappers::model()->with('posts.comments')->findBySql('SELECT * FROM users WHERE id=2');
+		UserWithWrappers::model()->with('posts.comments')->findBySql('SELECT * FROM user WHERE id=2');
 		$this->assertEquals(UserWithWrappers::getCounter('afterFind'),1);
 		$this->assertEquals(PostWithWrappers::getCounter('afterFind'),3);
 		$this->assertEquals(CommentWithWrappers::getCounter('afterFind'),6);
@@ -493,7 +493,7 @@ class CActiveRecordEventWrappersTest extends CTestCase
 		$this->assertEquals(PostWithWrappers::getCounter('afterFind'),3);
 		$this->assertEquals(CommentWithWrappers::getCounter('afterFind'),6);
 
-		UserWithWrappers::model()->with('posts.comments')->findAllBySql('SELECT * FROM users');
+		UserWithWrappers::model()->with('posts.comments')->findAllBySql('SELECT * FROM user');
 		$this->assertEquals(UserWithWrappers::getCounter('afterFind'),4);
 		$this->assertEquals(PostWithWrappers::getCounter('afterFind'),5);
 		$this->assertEquals(CommentWithWrappers::getCounter('afterFind'),10);
@@ -514,7 +514,7 @@ class CActiveRecordEventWrappersTest extends CTestCase
 		$this->assertEquals(PostWithWrappers::getCounter('afterFind'),0);
 		$this->assertEquals(CommentWithWrappers::getCounter('afterFind'),0);
 
-		UserWithWrappers::model()->with('posts.comments')->findBySql('SELECT * FROM users WHERE id=1000');
+		UserWithWrappers::model()->with('posts.comments')->findBySql('SELECT * FROM user WHERE id=1000');
 		$this->assertEquals(UserWithWrappers::getCounter('afterFind'),0);
 		$this->assertEquals(PostWithWrappers::getCounter('afterFind'),0);
 		$this->assertEquals(CommentWithWrappers::getCounter('afterFind'),0);
@@ -534,7 +534,7 @@ class CActiveRecordEventWrappersTest extends CTestCase
 		$this->assertEquals(PostWithWrappers::getCounter('afterFind'),0);
 		$this->assertEquals(CommentWithWrappers::getCounter('afterFind'),0);
 
-		UserWithWrappers::model()->with('posts.comments')->findAllBySql('SELECT * FROM users WHERE 1=0');
+		UserWithWrappers::model()->with('posts.comments')->findAllBySql('SELECT * FROM user WHERE 1=0');
 		$this->assertEquals(UserWithWrappers::getCounter('afterFind'),0);
 		$this->assertEquals(PostWithWrappers::getCounter('afterFind'),0);
 		$this->assertEquals(CommentWithWrappers::getCounter('afterFind'),0);

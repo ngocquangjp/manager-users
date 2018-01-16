@@ -3,7 +3,7 @@
 class UserTest extends CDbTestCase
 {
 	public $fixtures=array(
-		'users'=>'User',
+		'user'=>'user',
 	);
 
 	public function testValidatePassword()

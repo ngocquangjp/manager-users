@@ -122,27 +122,27 @@
  *   * @soap-wsdl 	</xsd:choice>
  *   * @soap-wsdl </xsd:sequence>
  *   * /
- * class User {
+ * class user {
  *     / **
- *       * @var string User name {minOccurs=1, maxOccurs=1}
+ *       * @var string user name {minOccurs=1, maxOccurs=1}
  *       * @soap
  *       * /
  *     public $name;
  *     / **
- *       * @var integer User age {nillable=0, minOccurs=1, maxOccurs=1}
+ *       * @var integer user age {nillable=0, minOccurs=1, maxOccurs=1}
  *       * @example 35
  *       * @soap
  *       * /
  *     public $age;
  *     / **
- *       * @var date User's birthday {nillable=0, minOccurs=1, maxOccurs=1}
+ *       * @var date user's birthday {nillable=0, minOccurs=1, maxOccurs=1}
  *       * @example 1980-05-27
  *       * @soap
  *       * /
  *     public $date_of_birth;
  * }
  * </pre>
- * In the example above, WSDL generator would inject under XML node &lt;xsd:User&gt; the code block defined by @soap-wsdl lines.
+ * In the example above, WSDL generator would inject under XML node &lt;xsd:user&gt; the code block defined by @soap-wsdl lines.
  *
  * By inserting into SOAP URL link the parameter "?makedoc", WSDL generator will output human-friendly overview of all complex data types rather than XML WSDL file.
  * Each complex type is described in a separate HTML table and recognizes also the '@example' PHPDoc tag. See {@link buildHtmlDocs()}.
@@ -212,7 +212,7 @@ class CWsdlGenerator extends CComponent
 	/**
 	* @var array List of complex types used by operations.
 	* If an SOAP operation defines complex input or output type, all objects are included here containing all sub-parameters.
-	* For instance, if an SOAP operation "createUser" requires complex input object "User", then the object "User" will be included here with declared subparameters such as "firstname", "lastname", etc..
+	* For instance, if an SOAP operation "createUser" requires complex input object "user", then the object "user" will be included here with declared subparameters such as "firstname", "lastname", etc..
 	*/
 	protected $types;
 

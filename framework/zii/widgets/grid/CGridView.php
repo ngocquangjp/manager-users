@@ -304,7 +304,7 @@ class CGridView extends CBaseListView
 	/**
 	 * @var CModel the model instance that keeps the user-entered filter data. When this property is set,
 	 * the grid view will enable column-based filtering. Each data column by default will display a text field
-	 * at the top that users can fill in to filter the data.
+	 * at the top that user can fill in to filter the data.
 	 * Note that in order to show an input field for filtering, a column must have its {@link CDataColumn::name}
 	 * property set or have {@link CDataColumn::filter} as the HTML code for the input field.
 	 * When this property is not set (null) the filtering is disabled.

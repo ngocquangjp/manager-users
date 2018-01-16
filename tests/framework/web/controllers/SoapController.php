@@ -51,7 +51,7 @@ class SoapController extends CController implements IWebServiceProvider
     * Return TRUE if the SOAP user is authorized.
     */
     protected function isAuthorized($user, $passwordHashed, $action) {
-    	// load allowed users..
+    	// load allowed user..
     	$users = array('tester123' => 'passwordHashed123');
 
     	if (isset($users[$user]) && $passwordHashed == $users[$user]) {

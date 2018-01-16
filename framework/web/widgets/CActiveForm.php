@@ -116,11 +116,11 @@
  * <pre>
  * public function actionCreate()
  * {
- *     $model=new User;
+ *     $model=new user;
  *     $this->performAjaxValidation($model);
- *     if(isset($_POST['User']))
+ *     if(isset($_POST['user']))
  *     {
- *         $model->attributes=$_POST['User'];
+ *         $model->attributes=$_POST['user'];
  *         if($model->save())
  *             $this->redirect('index');
  *     }
@@ -256,7 +256,7 @@ class CActiveForm extends CWidget
 	 * <pre>
 	 * public function actionCreate()
 	 * {
-	 *     $model=new User;
+	 *     $model=new user;
 	 *     if(isset($_POST['ajax']) && $_POST['ajax']==='user-form')
 	 *     {
 	 *         echo CActiveForm::validate($model);
@@ -386,7 +386,7 @@ class CActiveForm extends CWidget
 	/**
 	 * Displays the first validation error for a model attribute.
 	 * This is similar to {@link CHtml::error} except that it registers the model attribute
-	 * so that if its value is changed by users, an AJAX validation may be triggered.
+	 * so that if its value is changed by user, an AJAX validation may be triggered.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute name
 	 * @param array $htmlOptions additional HTML attributes to be rendered in the container div tag.

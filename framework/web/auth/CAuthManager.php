@@ -20,13 +20,13 @@
  * The main idea is that permissions are organized as a hierarchy of
  * {@link CAuthItem authorization items}. Items on higher level inherit the permissions
  * represented by items on lower level. And roles are simply top-level authorization items
- * that may be assigned to individual users. A user is said to have a permission
+ * that may be assigned to individual user. A user is said to have a permission
  * to do something if the corresponding authorization item is inherited by one of his roles.
  *
  * Using authorization manager consists of two aspects. First, the authorization hierarchy
  * and assignments have to be established. CAuthManager and its child classes
  * provides APIs to accomplish this task. Developers may need to develop some GUI
- * so that it is more intuitive to end-users. Second, developers call {@link IAuthManager::checkAccess}
+ * so that it is more intuitive to end-user. Second, developers call {@link IAuthManager::checkAccess}
  * at appropriate places in the application code to check if the current user
  * has the needed permission for an operation.
  *
@@ -47,7 +47,7 @@ abstract class CAuthManager extends CApplicationComponent implements IAuthManage
 	public $showErrors = false;
 
 	/**
-	 * @var array list of role names that are assigned to all users implicitly.
+	 * @var array list of role names that are assigned to all user implicitly.
 	 * These roles do not need to be explicitly assigned to any user.
 	 * When calling {@link checkAccess}, these roles will be checked first.
 	 * For performance reason, you should minimize the number of such roles.

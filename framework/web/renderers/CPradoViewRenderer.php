@@ -10,7 +10,7 @@
  */
 
 /**
- * CPradoViewRenderer implements a view renderer that allows users to use a template syntax similar to PRADO templates.
+ * CPradoViewRenderer implements a view renderer that allows user to use a template syntax similar to PRADO templates.
  *
  * To use CPradoViewRenderer, configure it as an application component named "viewRenderer" in the application configuration:
  * <pre>

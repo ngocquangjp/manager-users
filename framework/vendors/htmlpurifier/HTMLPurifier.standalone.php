@@ -34,7 +34,7 @@
  *      -# Validating attributes of the nodes; and
  *  -# Generating HTML from the purified tokens.
  *
- * However, most users will only need to interface with the HTMLPurifier
+ * However, most user will only need to interface with the HTMLPurifier
  * and HTMLPurifier_Config.
  */
 
@@ -3111,7 +3111,7 @@ class HTMLPurifier_Context
 /**
  * Abstract class representing Definition cache managers that implements
  * useful common methods and is a factory.
- * @todo Create a separate maintenance file advanced users can use to
+ * @todo Create a separate maintenance file advanced user can use to
  *       cache their custom HTMLDefinition, which can be loaded
  *       via a configuration directive
  * @todo Implement memcached
@@ -10101,7 +10101,7 @@ class HTMLPurifier_VarParserException extends HTMLPurifier_Exception
  *      Front list: 1 2 3 4
  *      Back list: 9 8 7 6
  *
- * User is expected to keep track of the "current element" and properly
+ * user is expected to keep track of the "current element" and properly
  * fill it back in as necessary.  (ToDo: Maybe it's more user friendly
  * to implicitly track the current element?)
  *
@@ -13307,7 +13307,7 @@ class HTMLPurifier_AttrDef_URI_Host extends HTMLPurifier_AttrDef
         // A regular domain name.
 
         // This doesn't match I18N domain names, but we don't have proper IRI support,
-        // so force users to insert Punycode.
+        // so force user to insert Punycode.
 
         // There is not a good sense in which underscores should be
         // allowed, since it's technically not! (And if you go as
@@ -16937,7 +16937,7 @@ class HTMLPurifier_HTMLModule_SafeEmbed extends HTMLPurifier_HTMLModule
 
 /**
  * A "safe" object module. In theory, objects permitted by this module will
- * be safe, and untrusted users can be allowed to embed arbitrary flash objects
+ * be safe, and untrusted user can be allowed to embed arbitrary flash objects
  * (maybe other types too, but only Flash is supported as of right now).
  * Highly experimental.
  */
@@ -22310,7 +22310,7 @@ class HTMLPurifier_URIScheme_tel extends HTMLPurifier_URIScheme
 
 /**
  * Performs safe variable parsing based on types which can be used by
- * users. This may not be able to represent all possible data inputs,
+ * user. This may not be able to represent all possible data inputs,
  * however.
  */
 class HTMLPurifier_VarParser_Flexible extends HTMLPurifier_VarParser
@@ -22442,7 +22442,7 @@ class HTMLPurifier_VarParser_Flexible extends HTMLPurifier_VarParser
 /**
  * This variable parser uses PHP's internal code engine. Because it does
  * this, it can represent all inputs; however, it is dangerous and cannot
- * be used by users.
+ * be used by user.
  */
 class HTMLPurifier_VarParser_Native extends HTMLPurifier_VarParser
 {

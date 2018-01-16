@@ -9,7 +9,7 @@ class MssqlUser2 extends User2
 {
 	public function tableName()
 	{
-		return '[dbo].[users]';
+		return '[dbo].[user]';
 	}
 }
 
@@ -54,7 +54,7 @@ class CMssqlTest extends CTestCase
 			$this->markTestSkipped("Please read $schemaFile for details on setting up the test environment for MSSQL test case.");
 		}
 
-		$tables=array('comments','post_category','posts','categories','profiles','users','items','orders','types');
+		$tables=array('comments','post_category','posts','categories','profiles','user','items','orders','types');
 		foreach($tables as $table)
 		{
 			$sql=<<<EOD
@@ -111,7 +111,7 @@ EOD;
 		$this->assertEquals('dbo',$table->schemaName);
 		$this->assertEquals('[dbo].[posts]',$table->rawName);
 		$this->assertEquals('id',$table->primaryKey);
-		$this->assertEquals(array('author_id'=>array('users','id')),$table->foreignKeys);
+		$this->assertEquals(array('author_id'=>array('user','id')),$table->foreignKeys);
 		$this->assertEquals('posts',$table->sequenceName);
 		$this->assertEquals(5,count($table->columns));
 
@@ -344,15 +344,15 @@ EOD;
 	{
 		$tables=$this->db->schema->tables;
 
-		$usersColumns=$tables['users']->columns;
+		$usersColumns=$tables['user']->columns;
 		$this->assertEquals('Name of the user', $usersColumns['username']->comment);
-		$this->assertEquals('User\'s password', $usersColumns['password']->comment);
-		$this->assertEquals('User\'s email', $usersColumns['email']->comment);
+		$this->assertEquals('user\'s password', $usersColumns['password']->comment);
+		$this->assertEquals('user\'s email', $usersColumns['email']->comment);
 
 		$usersColumns=$tables['profiles']->columns;
 		$this->assertEquals('用户名。', $usersColumns['first_name']->comment);
 		$this->assertEquals('Тест Юникода', $usersColumns['id']->comment);
-		$this->assertEquals('User\'s identifier', $usersColumns['user_id']->comment);
+		$this->assertEquals('user\'s identifier', $usersColumns['user_id']->comment);
 		$this->assertEmpty($usersColumns['last_name']->comment);
 	}
 
@@ -367,33 +367,33 @@ EOD;
 		$this->assertTrue($user->isNewRecord);
 		$this->assertNull($user->primaryKey);
 		$this->assertNull($user->id);
-		$this->assertEquals(3, $this->db->createCommand('SELECT MAX(id) FROM [dbo].[users]')->queryScalar());
+		$this->assertEquals(3, $this->db->createCommand('SELECT MAX(id) FROM [dbo].[user]')->queryScalar());
 
 		$user->save();
 
 		$this->assertFalse($user->isNewRecord);
 		$this->assertEquals(4, $user->primaryKey);
 		$this->assertEquals(4, $user->id);
-		$this->assertEquals(4, $this->db->createCommand('SELECT MAX(id) FROM [dbo].[users]')->queryScalar());
+		$this->assertEquals(4, $this->db->createCommand('SELECT MAX(id) FROM [dbo].[user]')->queryScalar());
 	}
 
 	public function testResetSequence()
 	{
 		$tables=$this->db->schema->tables;
 
-		$this->db->schema->resetSequence($tables['users']);
-		$this->db->createCommand()->insert('users',array('username'=>'testerX','password'=>'passwordX','email'=>'emailX@gmail.com'));
-		$id=$this->db->createCommand()->select('id')->from('users')->where("[username]='testerX'")->queryScalar();
+		$this->db->schema->resetSequence($tables['user']);
+		$this->db->createCommand()->insert('user',array('username'=>'testerX','password'=>'passwordX','email'=>'emailX@gmail.com'));
+		$id=$this->db->createCommand()->select('id')->from('user')->where("[username]='testerX'")->queryScalar();
 		$this->assertEquals(4,$id);
 
-		$this->db->schema->resetSequence($tables['users'],100);
-		$this->db->createCommand()->insert('users',array('username'=>'testerY','password'=>'passwordY','email'=>'emailY@gmail.com'));
-		$id=$this->db->createCommand()->select('id')->from('users')->where("[username]='testerY'")->queryScalar();
+		$this->db->schema->resetSequence($tables['user'],100);
+		$this->db->createCommand()->insert('user',array('username'=>'testerY','password'=>'passwordY','email'=>'emailY@gmail.com'));
+		$id=$this->db->createCommand()->select('id')->from('user')->where("[username]='testerY'")->queryScalar();
 		$this->assertEquals(100,$id);
 
-		$this->db->schema->resetSequence($tables['users']);
-		$this->db->createCommand()->insert('users',array('username'=>'testerZ','password'=>'passwordZ','email'=>'emailZ@gmail.com'));
-		$id=$this->db->createCommand()->select('id')->from('users')->where("[username]='testerZ'")->queryScalar();
+		$this->db->schema->resetSequence($tables['user']);
+		$this->db->createCommand()->insert('user',array('username'=>'testerZ','password'=>'passwordZ','email'=>'emailZ@gmail.com'));
+		$id=$this->db->createCommand()->select('id')->from('user')->where("[username]='testerZ'")->queryScalar();
 		$this->assertEquals(101,$id);
 	}
 }

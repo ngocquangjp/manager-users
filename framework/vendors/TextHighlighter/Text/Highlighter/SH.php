@@ -645,7 +645,7 @@ class  Text_Highlighter_SH extends Text_Highlighter
                 18 => -1,
                 19 =>
                 array (
-                    'reserved' => '/^(cd|cp|rm|echo|printf|exit|cut|join|comm|fmt|grep|egrep|fgrep|sed|awk|yes|false|true|test|expr|tee|basename|dirname|pathchk|pwd|stty|tty|env|printenv|id|logname|whoami|groups|users|who|date|uname|hostname|chroot|nice|nohup|sleep|factor|seq|getopt|getopts|options|shift)$/',
+                    'reserved' => '/^(cd|cp|rm|echo|printf|exit|cut|join|comm|fmt|grep|egrep|fgrep|sed|awk|yes|false|true|test|expr|tee|basename|dirname|pathchk|pwd|stty|tty|env|printenv|id|logname|whoami|groups|user|who|date|uname|hostname|chroot|nice|nohup|sleep|factor|seq|getopt|getopts|options|shift)$/',
                     'flowcontrol' => '/^(if|fi|then|else|elif|case|esac|while|done|for|in|function|until|do|select|time|read|set)$/',
                 ),
                 20 =>
@@ -695,7 +695,7 @@ class  Text_Highlighter_SH extends Text_Highlighter
                 18 => -1,
                 19 =>
                 array (
-                    'reserved' => '/^(cd|cp|rm|echo|printf|exit|cut|join|comm|fmt|grep|egrep|fgrep|sed|awk|yes|false|true|test|expr|tee|basename|dirname|pathchk|pwd|stty|tty|env|printenv|id|logname|whoami|groups|users|who|date|uname|hostname|chroot|nice|nohup|sleep|factor|seq|getopt|getopts|options|shift)$/',
+                    'reserved' => '/^(cd|cp|rm|echo|printf|exit|cut|join|comm|fmt|grep|egrep|fgrep|sed|awk|yes|false|true|test|expr|tee|basename|dirname|pathchk|pwd|stty|tty|env|printenv|id|logname|whoami|groups|user|who|date|uname|hostname|chroot|nice|nohup|sleep|factor|seq|getopt|getopts|options|shift)$/',
                     'flowcontrol' => '/^(if|fi|then|else|elif|case|esac|while|done|for|in|function|until|do|select|time|read|set)$/',
                 ),
                 20 =>
@@ -748,7 +748,7 @@ class  Text_Highlighter_SH extends Text_Highlighter
                 19 => -1,
                 20 =>
                 array (
-                    'reserved' => '/^(cd|cp|rm|echo|printf|exit|cut|join|comm|fmt|grep|egrep|fgrep|sed|awk|yes|false|true|test|expr|tee|basename|dirname|pathchk|pwd|stty|tty|env|printenv|id|logname|whoami|groups|users|who|date|uname|hostname|chroot|nice|nohup|sleep|factor|seq|getopt|getopts|options|shift)$/',
+                    'reserved' => '/^(cd|cp|rm|echo|printf|exit|cut|join|comm|fmt|grep|egrep|fgrep|sed|awk|yes|false|true|test|expr|tee|basename|dirname|pathchk|pwd|stty|tty|env|printenv|id|logname|whoami|groups|user|who|date|uname|hostname|chroot|nice|nohup|sleep|factor|seq|getopt|getopts|options|shift)$/',
                     'flowcontrol' => '/^(if|fi|then|else|elif|case|esac|while|done|for|in|function|until|do|select|time|read|set)$/',
                 ),
                 21 =>
@@ -798,7 +798,7 @@ class  Text_Highlighter_SH extends Text_Highlighter
                 18 => -1,
                 19 =>
                 array (
-                    'reserved' => '/^(cd|cp|rm|echo|printf|exit|cut|join|comm|fmt|grep|egrep|fgrep|sed|awk|yes|false|true|test|expr|tee|basename|dirname|pathchk|pwd|stty|tty|env|printenv|id|logname|whoami|groups|users|who|date|uname|hostname|chroot|nice|nohup|sleep|factor|seq|getopt|getopts|options|shift)$/',
+                    'reserved' => '/^(cd|cp|rm|echo|printf|exit|cut|join|comm|fmt|grep|egrep|fgrep|sed|awk|yes|false|true|test|expr|tee|basename|dirname|pathchk|pwd|stty|tty|env|printenv|id|logname|whoami|groups|user|who|date|uname|hostname|chroot|nice|nohup|sleep|factor|seq|getopt|getopts|options|shift)$/',
                     'flowcontrol' => '/^(if|fi|then|else|elif|case|esac|while|done|for|in|function|until|do|select|time|read|set)$/',
                 ),
                 20 =>

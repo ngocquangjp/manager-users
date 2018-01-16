@@ -24,7 +24,7 @@ class CCubrid2Test extends CTestCase
 			$this->markTestSkipped("Please read $schemaFile for details on setting up the test environment for CUBRID test case.");
 		}
 
-		$tables=array('comments','post_category','posts','categories','profiles','users','items','orders','types');
+		$tables=array('comments','post_category','posts','categories','profiles','user','items','orders','types');
 		foreach($tables as $table)
 			$this->db->createCommand("DROP TABLE IF EXISTS $table")->execute();
 
@@ -88,8 +88,8 @@ class CCubrid2Test extends CTestCase
 
 	public function testRenameColumn()
 	{
-		$sql=$this->db->schema->renameColumn('users', 'username', 'name');
-		$expect="ALTER TABLE `users` RENAME COLUMN `username` TO `name`";
+		$sql=$this->db->schema->renameColumn('user', 'username', 'name');
+		$expect="ALTER TABLE `user` RENAME COLUMN `username` TO `name`";
 		$this->assertEquals($expect, $sql);
 	}
 
@@ -102,12 +102,12 @@ class CCubrid2Test extends CTestCase
 
 	public function testAddForeignKey()
 	{
-		$sql=$this->db->schema->addForeignKey('fk_test', 'profile', 'user_id', 'users', 'id');
-		$expect='ALTER TABLE `profile` ADD CONSTRAINT `fk_test` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)';
+		$sql=$this->db->schema->addForeignKey('fk_test', 'profile', 'user_id', 'user', 'id');
+		$expect='ALTER TABLE `profile` ADD CONSTRAINT `fk_test` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)';
 		$this->assertEquals($expect, $sql);
 
-		$sql=$this->db->schema->addForeignKey('fk_test', 'profile', 'user_id', 'users', 'id','CASCADE','RESTRICTED');
-		$expect='ALTER TABLE `profile` ADD CONSTRAINT `fk_test` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE RESTRICTED';
+		$sql=$this->db->schema->addForeignKey('fk_test', 'profile', 'user_id', 'user', 'id','CASCADE','RESTRICTED');
+		$expect='ALTER TABLE `profile` ADD CONSTRAINT `fk_test` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE RESTRICTED';
 		$this->assertEquals($expect, $sql);
 	}
 

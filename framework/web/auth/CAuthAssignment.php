@@ -14,7 +14,7 @@
  * Do not create a CAuthAssignment instance using the 'new' operator.
  * Instead, call {@link IAuthManager::assign}.
  *
- * @property mixed $userId User ID (see {@link IWebUser::getId}).
+ * @property mixed $userId user ID (see {@link IWebUser::getId}).
  * @property string $itemName The authorization item name.
  * @property string $bizRule The business rule associated with this assignment.
  * @property mixed $data Additional data for this assignment.

@@ -28,7 +28,7 @@ class CDbCommandBuilderTest extends CTestCase
 			$this->markTestSkipped("Please read $schemaFile for details on setting up the test environment for MySQL test case.");
 		}
 
-		$tables=array('comments','post_category','posts','categories','profiles','users','items','orders','types');
+		$tables=array('comments','post_category','posts','categories','profiles','user','items','orders','types');
 		foreach($tables as $table)
 			$this->db->createCommand("DROP TABLE IF EXISTS $table CASCADE")->execute();
 
@@ -48,7 +48,7 @@ class CDbCommandBuilderTest extends CTestCase
 	public function testIssue1407_1()
 	{
 		// :parameter1 and :parameter2 should be removed inside CDbCommandBuilder::createCountCommand()
-		$tableSchema=$this->db->getSchema()->getTable('users');
+		$tableSchema=$this->db->getSchema()->getTable('user');
 		$builder=$this->db->getSchema()->getCommandBuilder();
 
 		$criteria1=new CDbCriteria();
@@ -94,7 +94,7 @@ class CDbCommandBuilderTest extends CTestCase
 	public function testIssue1407_2()
 	{
 		// :parameter1 is not used in SQL, thus exception should be thrown
-		$tableSchema=$this->db->getSchema()->getTable('users');
+		$tableSchema=$this->db->getSchema()->getTable('user');
 		$builder=$this->db->getSchema()->getCommandBuilder();
 
 		$criteria=new CDbCriteria();
@@ -113,7 +113,7 @@ class CDbCommandBuilderTest extends CTestCase
 	public function testIssue1407_3()
 	{
 		// :parameter2 is not used in SQL, thus exception should be thrown
-		$tableSchema=$this->db->getSchema()->getTable('users');
+		$tableSchema=$this->db->getSchema()->getTable('user');
 		$builder=$this->db->getSchema()->getCommandBuilder();
 
 		$criteria=new CDbCriteria();
@@ -132,7 +132,7 @@ class CDbCommandBuilderTest extends CTestCase
 	public function testIssue1407_4()
 	{
 		// both :parameter1 and :parameter2 are not used in SQL, thus exception should be thrown
-		$tableSchema=$this->db->getSchema()->getTable('users');
+		$tableSchema=$this->db->getSchema()->getTable('user');
 		$builder=$this->db->getSchema()->getCommandBuilder();
 
 		$criteria=new CDbCriteria();
@@ -151,7 +151,7 @@ class CDbCommandBuilderTest extends CTestCase
 	public function testIssue1407_5()
 	{
 		// :parameter3 is not used
-		$tableSchema=$this->db->getSchema()->getTable('users');
+		$tableSchema=$this->db->getSchema()->getTable('user');
 		$builder=$this->db->getSchema()->getCommandBuilder();
 
 		$criteria=new CDbCriteria();

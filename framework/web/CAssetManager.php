@@ -47,7 +47,7 @@ class CAssetManager extends CApplicationComponent
 	 * The latter requires PHP 5.3 or greater.
 	 *
 	 * Moreover, some Web servers need to be properly configured so that the linked assets are accessible
-	 * to Web users. For example, for Apache Web server, the following configuration directive should be added
+	 * to Web user. For example, for Apache Web server, the following configuration directive should be added
 	 * for the Web folder:
 	 * <pre>
 	 * Options FollowSymLinks
@@ -70,14 +70,14 @@ class CAssetManager extends CApplicationComponent
 	/**
 	 * @var integer the permission to be set for newly generated asset files.
 	 * This value will be used by PHP chmod function.
-	 * Defaults to 0666, meaning the file is read-writable by all users.
+	 * Defaults to 0666, meaning the file is read-writable by all user.
 	 * @since 1.1.8
 	 */
 	public $newFileMode=0666;
 	/**
 	 * @var integer the permission to be set for newly generated asset directories.
 	 * This value will be used by PHP chmod function.
-	 * Defaults to 0777, meaning the directory can be read, written and executed by all users.
+	 * Defaults to 0777, meaning the directory can be read, written and executed by all user.
 	 * @since 1.1.8
 	 */
 	public $newDirMode=0777;

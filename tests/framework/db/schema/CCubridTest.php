@@ -24,7 +24,7 @@ class CCubridTest extends CTestCase
 			$this->markTestSkipped("Please read $schemaFile for details on setting up the test environment for CUBRID test case.");
 		}
 
-		$tables=array('comments','post_category','posts','categories','profiles','users','items','orders','types');
+		$tables=array('comments','post_category','posts','categories','profiles','user','items','orders','types');
 		foreach($tables as $table)
 			$this->db->createCommand("DROP TABLE IF EXISTS $table")->execute();
 
@@ -60,7 +60,7 @@ class CCubridTest extends CTestCase
 		$this->assertEquals('posts',$table->name);
 		$this->assertEquals('`posts`',$table->rawName);
 		$this->assertEquals('id',$table->primaryKey);
-		$this->assertEquals(array('author_id'=>array('users','id')),$table->foreignKeys);
+		$this->assertEquals(array('author_id'=>array('user','id')),$table->foreignKeys);
 		$this->assertEquals('',$table->sequenceName);
 		$this->assertEquals(5,count($table->columns));
 
@@ -260,30 +260,30 @@ class CCubridTest extends CTestCase
 
 	public function testResetSequence()
 	{
-		$max=$this->db->createCommand("SELECT MAX(id) FROM users")->queryScalar();
-		$this->db->createCommand("DELETE FROM users")->execute();
-		$this->db->createCommand("INSERT INTO users (username, password, email) VALUES ('user4','pass4','email4')")->execute();
-		$max2=$this->db->createCommand("SELECT MAX(id) FROM users")->queryScalar();
+		$max=$this->db->createCommand("SELECT MAX(id) FROM user")->queryScalar();
+		$this->db->createCommand("DELETE FROM user")->execute();
+		$this->db->createCommand("INSERT INTO user (username, password, email) VALUES ('user4','pass4','email4')")->execute();
+		$max2=$this->db->createCommand("SELECT MAX(id) FROM user")->queryScalar();
 		$this->assertEquals($max+1,$max2);
 
-		$userTable=$this->db->schema->getTable('users');
+		$userTable=$this->db->schema->getTable('user');
 
-		$this->db->createCommand("DELETE FROM users")->execute();
+		$this->db->createCommand("DELETE FROM user")->execute();
 		$this->db->schema->resetSequence($userTable);return;
-		$this->db->createCommand("INSERT INTO users (username, password, email) VALUES ('user4','pass4','email4')")->execute();
-		$max=$this->db->createCommand("SELECT MAX(id) FROM users")->queryScalar();
+		$this->db->createCommand("INSERT INTO user (username, password, email) VALUES ('user4','pass4','email4')")->execute();
+		$max=$this->db->createCommand("SELECT MAX(id) FROM user")->queryScalar();
 		$this->assertEquals(1,$max);
-		$this->db->createCommand("INSERT INTO users (username, password, email) VALUES ('user4','pass4','email4')")->execute();
-		$max=$this->db->createCommand("SELECT MAX(id) FROM users")->queryScalar();
+		$this->db->createCommand("INSERT INTO user (username, password, email) VALUES ('user4','pass4','email4')")->execute();
+		$max=$this->db->createCommand("SELECT MAX(id) FROM user")->queryScalar();
 		$this->assertEquals(2,$max);
 
-		$this->db->createCommand("DELETE FROM users")->execute();
+		$this->db->createCommand("DELETE FROM user")->execute();
 		$this->db->schema->resetSequence($userTable,10);
-		$this->db->createCommand("INSERT INTO users (username, password, email) VALUES ('user4','pass4','email4')")->execute();
-		$max=$this->db->createCommand("SELECT MAX(id) FROM users")->queryScalar();
+		$this->db->createCommand("INSERT INTO user (username, password, email) VALUES ('user4','pass4','email4')")->execute();
+		$max=$this->db->createCommand("SELECT MAX(id) FROM user")->queryScalar();
 		$this->assertEquals(10,$max);
-		$this->db->createCommand("INSERT INTO users (username, password, email) VALUES ('user4','pass4','email4')")->execute();
-		$max=$this->db->createCommand("SELECT MAX(id) FROM users")->queryScalar();
+		$this->db->createCommand("INSERT INTO user (username, password, email) VALUES ('user4','pass4','email4')")->execute();
+		$max=$this->db->createCommand("SELECT MAX(id) FROM user")->queryScalar();
 		$this->assertEquals(11,$max);
 	}
 }

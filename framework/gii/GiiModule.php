@@ -96,13 +96,13 @@ class GiiModule extends CWebModule
 	/**
 	 * @var integer the permission to be set for newly generated code files.
 	 * This value will be used by PHP chmod function.
-	 * Defaults to 0666, meaning the file is read-writable by all users.
+	 * Defaults to 0666, meaning the file is read-writable by all user.
 	 */
 	public $newFileMode=0666;
 	/**
 	 * @var integer the permission to be set for newly generated directories.
 	 * This value will be used by PHP chmod function.
-	 * Defaults to 0777, meaning the directory can be read, written and executed by all users.
+	 * Defaults to 0777, meaning the directory can be read, written and executed by all user.
 	 */
 	public $newDirMode=0777;
 

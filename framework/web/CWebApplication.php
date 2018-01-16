@@ -25,7 +25,7 @@
  * <li>{@link widgetFactory}: creates widgets and supports widget skinning.</li>
  * </ul>
  *
- * User requests are resolved as controller-action pairs and additional parameters.
+ * user requests are resolved as controller-action pairs and additional parameters.
  * CWebApplication creates the requested controller instance and let it to handle
  * the actual user request. If the user does not specify controller ID, it will
  * assume {@link defaultController} is requested (which defaults to 'site').

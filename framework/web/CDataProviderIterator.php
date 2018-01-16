@@ -14,10 +14,10 @@
  * CDataProviderIterator iterates over the results of a data provider, starting at the first page
  * of results and ending at the last page. It is usually only suited for use with {@link CActiveDataProvider}.
  *
- * For example, the following code will iterate over all registered users (active record class User) without
- * running out of memory, even if there are millions of users in the database.
+ * For example, the following code will iterate over all registered user (active record class user) without
+ * running out of memory, even if there are millions of user in the database.
  * <pre>
- * $dataProvider = new CActiveDataProvider("User");
+ * $dataProvider = new CActiveDataProvider("user");
  * $iterator = new CDataProviderIterator($dataProvider);
  * foreach($iterator as $user) {
  *	 echo $user->name."\n";

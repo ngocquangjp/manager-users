@@ -97,8 +97,8 @@ class CPostgres2Test extends CTestCase
 
 	public function testRenameColumn()
 	{
-		$sql=$this->db->schema->renameColumn('users', 'username', 'name');
-		$expect='ALTER TABLE "users" RENAME COLUMN "username" TO "name"';
+		$sql=$this->db->schema->renameColumn('user', 'username', 'name');
+		$expect='ALTER TABLE "user" RENAME COLUMN "username" TO "name"';
 		$this->assertEquals($expect, $sql);
 	}
 
@@ -111,20 +111,20 @@ class CPostgres2Test extends CTestCase
 
 	public function testAddForeignKey()
 	{
-		$sql=$this->db->schema->addForeignKey('fk_test', 'profile', 'user_id', 'users', 'id');
-		$expect='ALTER TABLE "profile" ADD CONSTRAINT "fk_test" FOREIGN KEY ("user_id") REFERENCES "users" ("id")';
+		$sql=$this->db->schema->addForeignKey('fk_test', 'profile', 'user_id', 'user', 'id');
+		$expect='ALTER TABLE "profile" ADD CONSTRAINT "fk_test" FOREIGN KEY ("user_id") REFERENCES "user" ("id")';
 		$this->assertEquals($expect, $sql);
 
-		$sql=$this->db->schema->addForeignKey('fk_test', 'profile', 'user_id', 'users', 'id','CASCADE','RESTRICTED');
-		$expect='ALTER TABLE "profile" ADD CONSTRAINT "fk_test" FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE RESTRICTED';
+		$sql=$this->db->schema->addForeignKey('fk_test', 'profile', 'user_id', 'user', 'id','CASCADE','RESTRICTED');
+		$expect='ALTER TABLE "profile" ADD CONSTRAINT "fk_test" FOREIGN KEY ("user_id") REFERENCES "user" ("id") ON DELETE CASCADE ON UPDATE RESTRICTED';
 		$this->assertEquals($expect, $sql);
 
-		$sql=$this->db->schema->addForeignKey('fk_test', 'profile', 'user_id,id', 'users', 'id,username','CASCADE','RESTRICTED');
-		$expect='ALTER TABLE "profile" ADD CONSTRAINT "fk_test" FOREIGN KEY ("user_id", "id") REFERENCES "users" ("id", "username") ON DELETE CASCADE ON UPDATE RESTRICTED';
+		$sql=$this->db->schema->addForeignKey('fk_test', 'profile', 'user_id,id', 'user', 'id,username','CASCADE','RESTRICTED');
+		$expect='ALTER TABLE "profile" ADD CONSTRAINT "fk_test" FOREIGN KEY ("user_id", "id") REFERENCES "user" ("id", "username") ON DELETE CASCADE ON UPDATE RESTRICTED';
 		$this->assertEquals($expect, $sql);
 
-		$sql=$this->db->schema->addForeignKey('fk_test', 'profile', array('user_id','id'), 'users', array('id','username'),'CASCADE','RESTRICTED');
-		$expect='ALTER TABLE "profile" ADD CONSTRAINT "fk_test" FOREIGN KEY ("user_id", "id") REFERENCES "users" ("id", "username") ON DELETE CASCADE ON UPDATE RESTRICTED';
+		$sql=$this->db->schema->addForeignKey('fk_test', 'profile', array('user_id','id'), 'user', array('id','username'),'CASCADE','RESTRICTED');
+		$expect='ALTER TABLE "profile" ADD CONSTRAINT "fk_test" FOREIGN KEY ("user_id", "id") REFERENCES "user" ("id", "username") ON DELETE CASCADE ON UPDATE RESTRICTED';
 		$this->assertEquals($expect, $sql);
 	}
 

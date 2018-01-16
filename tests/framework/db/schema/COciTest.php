@@ -41,7 +41,7 @@ class COciTest extends CTestCase
 			$this->markTestSkipped("Please read {$schemaFilePath} for details on setting up the test environment for OCI test case.");
 		}
 
-		$tables=array('comments', 'post_category', 'posts', 'categories', 'profiles', 'users', 'items', 'orders', 'types');
+		$tables=array('comments', 'post_category', 'posts', 'categories', 'profiles', 'user', 'items', 'orders', 'types');
 
 		// delete existing sequences
 		foreach($tables as $table)
@@ -101,9 +101,9 @@ EOD;
 		$this->assertInstanceOf('CDbSchema', $schema);
 		$this->assertEquals($schema->dbConnection, $this->db);
 		$this->assertInstanceOf('CDbCommandBuilder', $schema->commandBuilder);
-		$this->assertEquals('"users"', $schema->quoteTableName('users'));
+		$this->assertEquals('"user"', $schema->quoteTableName('user'));
 		$this->assertEquals('"id"', $schema->quoteColumnName('id'));
-		$this->assertInstanceOf('CDbTableSchema', $schema->getTable('users'));
+		$this->assertInstanceOf('CDbTableSchema', $schema->getTable('user'));
 		$this->assertNull($schema->getTable('foo'));
 	}
 
@@ -114,7 +114,7 @@ EOD;
 		$this->assertEquals('posts', $table->name);
 		$this->assertEquals('"posts"', $table->rawName);
 		$this->assertEquals('id', $table->primaryKey);
-		$this->assertEquals(array('author_id'=>array('users', 'id')), $table->foreignKeys);
+		$this->assertEquals(array('author_id'=>array('user', 'id')), $table->foreignKeys);
 		$this->assertEmpty($table->sequenceName);
 		$this->assertCount(5, $table->columns);
 
@@ -293,30 +293,30 @@ FROM PAGINATION
 		// we're assuming in this test that COciSchema::resetSequence() is not implemented
 		// empty CDbSchema::resetSequence() being used
 
-		$max=$this->db->createCommand('SELECT MAX("id") FROM "users"')->queryScalar();
-		$this->db->createCommand('DELETE FROM "users"')->execute();
-		$this->db->createCommand('INSERT INTO "users" ("username", "password", "email") VALUES (\'user4\', \'pass4\', \'email4\')')->execute();
-		$max2=$this->db->createCommand('SELECT MAX("id") FROM "users"')->queryScalar();
+		$max=$this->db->createCommand('SELECT MAX("id") FROM "user"')->queryScalar();
+		$this->db->createCommand('DELETE FROM "user"')->execute();
+		$this->db->createCommand('INSERT INTO "user" ("username", "password", "email") VALUES (\'user4\', \'pass4\', \'email4\')')->execute();
+		$max2=$this->db->createCommand('SELECT MAX("id") FROM "user"')->queryScalar();
 		$this->assertEquals($max+1, $max2);
 
-		$userTable=$this->db->schema->getTable('users');
+		$userTable=$this->db->schema->getTable('user');
 
-		$this->db->createCommand('DELETE FROM "users"')->execute();
+		$this->db->createCommand('DELETE FROM "user"')->execute();
 		$this->db->schema->resetSequence($userTable);
-		$this->db->createCommand('INSERT INTO "users" ("username", "password", "email") VALUES (\'user4\', \'pass4\', \'email4\')')->execute();
-		$max=$this->db->createCommand('SELECT MAX("id") FROM "users"')->queryScalar();
+		$this->db->createCommand('INSERT INTO "user" ("username", "password", "email") VALUES (\'user4\', \'pass4\', \'email4\')')->execute();
+		$max=$this->db->createCommand('SELECT MAX("id") FROM "user"')->queryScalar();
 		$this->assertEquals(6, $max);
-		$this->db->createCommand('INSERT INTO "users" ("username", "password", "email") VALUES (\'user4\', \'pass4\', \'email4\')')->execute();
-		$max=$this->db->createCommand('SELECT MAX("id") FROM "users"')->queryScalar();
+		$this->db->createCommand('INSERT INTO "user" ("username", "password", "email") VALUES (\'user4\', \'pass4\', \'email4\')')->execute();
+		$max=$this->db->createCommand('SELECT MAX("id") FROM "user"')->queryScalar();
 		$this->assertEquals(7, $max);
 
-		$this->db->createCommand('DELETE FROM "users"')->execute();
+		$this->db->createCommand('DELETE FROM "user"')->execute();
 		$this->db->schema->resetSequence($userTable, 10);
-		$this->db->createCommand('INSERT INTO "users" ("username", "password", "email") VALUES (\'user4\', \'pass4\', \'email4\')')->execute();
-		$max=$this->db->createCommand('SELECT MAX("id") FROM "users"')->queryScalar();
+		$this->db->createCommand('INSERT INTO "user" ("username", "password", "email") VALUES (\'user4\', \'pass4\', \'email4\')')->execute();
+		$max=$this->db->createCommand('SELECT MAX("id") FROM "user"')->queryScalar();
 		$this->assertEquals(8, $max);
-		$this->db->createCommand('INSERT INTO "users" ("username", "password", "email") VALUES (\'user4\', \'pass4\', \'email4\')')->execute();
-		$max=$this->db->createCommand('SELECT MAX("id") FROM "users"')->queryScalar();
+		$this->db->createCommand('INSERT INTO "user" ("username", "password", "email") VALUES (\'user4\', \'pass4\', \'email4\')')->execute();
+		$max=$this->db->createCommand('SELECT MAX("id") FROM "user"')->queryScalar();
 		$this->assertEquals(9, $max);
 	}
 
@@ -325,8 +325,8 @@ FROM PAGINATION
 		$tables=$this->db->schema->tables;
 
 		// specified comments
-		$usersColumns=$tables['users']->columns;
-		$this->assertEquals('User\'s entry primary key', $usersColumns['id']->comment);
+		$usersColumns=$tables['user']->columns;
+		$this->assertEquals('user\'s entry primary key', $usersColumns['id']->comment);
 		$this->assertEquals('Имя пользователя', $usersColumns['username']->comment);
 		$this->assertEquals('用户的密码', $usersColumns['password']->comment);
 		$this->assertEquals('דוא"ל של המשתמש', $usersColumns['email']->comment);

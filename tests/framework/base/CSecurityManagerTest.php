@@ -227,7 +227,7 @@ class CSecurityManagerTest extends CTestCase
 			array("\0","\0"),
 			array("0","\0"),
 			array(0,"\0"),
-			array("user","User"),
+			array("user","user"),
 			array("password","password"),
 			array("password","passwordpassword"),
 			array("password1","password"),

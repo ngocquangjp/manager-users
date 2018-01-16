@@ -27,11 +27,11 @@ class CommentController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array('allow', // allow authenticated users to access all actions
-				'users'=>array('@'),
+			array('allow', // allow authenticated user to access all actions
+				'user'=>array('@'),
 			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
+			array('deny',  // deny all user
+				'user'=>array('*'),
 			),
 		);
 	}

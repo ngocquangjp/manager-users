@@ -790,15 +790,15 @@ class CHtmlTest extends CTestCase
 	public function providerActiveLabel()
 	{
 		return array(
-			array(false, 'userName', array(), '<label for="CHtmlTestActiveModel_userName">User Name</label>'),
-			array(false, 'userName', array('for'=>'someTestingInput'), '<label for="someTestingInput">User Name</label>'),
+			array(false, 'userName', array(), '<label for="CHtmlTestActiveModel_userName">user Name</label>'),
+			array(false, 'userName', array('for'=>'someTestingInput'), '<label for="someTestingInput">user Name</label>'),
 			array(false, 'userName', array('label'=>'Custom Label'), '<label for="CHtmlTestActiveModel_userName">Custom Label</label>'),
 			array(false, 'userName', array('label'=>false), ''),
-			array(true, 'userName', array(), '<label class="error" for="CHtmlTestActiveModel_userName">User Name</label>'),
-			array(true, 'userName', array('for'=>'someTestingInput'), '<label class="error" for="someTestingInput">User Name</label>'),
+			array(true, 'userName', array(), '<label class="error" for="CHtmlTestActiveModel_userName">user Name</label>'),
+			array(true, 'userName', array('for'=>'someTestingInput'), '<label class="error" for="someTestingInput">user Name</label>'),
 			array(true, 'firstName', array('label'=>'Custom Label'), '<label for="CHtmlTestActiveModel_firstName">Custom Label</label>'),
 			array(true, 'userName', array('label'=>false), ''),
-			array(false, '[1]userName', array('for'=>'customFor'), '<label for="customFor">User Name</label>'),
+			array(false, '[1]userName', array('for'=>'customFor'), '<label for="customFor">user Name</label>'),
 		);
 	}
 
@@ -825,8 +825,8 @@ class CHtmlTest extends CTestCase
 			array(false, 'firstName', array('for'=>'someTestingInput'), '<label for="someTestingInput">First Name</label>'),
 			array(false, 'userName', array('label'=>'Custom Label'), '<label for="CHtmlTestActiveModel_userName" class="required">Custom Label <span class="required">*</span></label>'),
 			array(false, 'userName', array('label'=>false), ''),
-			array(true, 'userName', array(), '<label class="error required" for="CHtmlTestActiveModel_userName">User Name <span class="required">*</span></label>'),
-			array(true, 'userName', array('for'=>'someTestingInput'), '<label class="error required" for="someTestingInput">User Name <span class="required">*</span></label>'),
+			array(true, 'userName', array(), '<label class="error required" for="CHtmlTestActiveModel_userName">user Name <span class="required">*</span></label>'),
+			array(true, 'userName', array('for'=>'someTestingInput'), '<label class="error required" for="someTestingInput">user Name <span class="required">*</span></label>'),
 			array(true, 'firstName', array('label'=>'Custom Label'), '<label for="CHtmlTestActiveModel_firstName">Custom Label</label>'),
 			array(true, 'firstName', array('label'=>false), ''),
 		);

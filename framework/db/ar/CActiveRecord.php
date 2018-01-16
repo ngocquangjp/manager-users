@@ -529,7 +529,7 @@ abstract class CActiveRecord extends CModel
 	 * Below is an example declaring related objects for 'Post' active record class:
 	 * <pre>
 	 * return array(
-	 *     'author'=>array(self::BELONGS_TO, 'User', 'author_id'),
+	 *     'author'=>array(self::BELONGS_TO, 'user', 'author_id'),
 	 *     'comments'=>array(self::HAS_MANY, 'Comment', 'post_id', 'with'=>'author', 'order'=>'create_time DESC'),
 	 *     'tags'=>array(self::MANY_MANY, 'Tag', 'post_tag(post_id, tag_id)', 'order'=>'name'),
 	 * );
@@ -1975,7 +1975,7 @@ class CBaseActiveRelation extends CComponent
 	public $group='';
 	/**
 	 * @var string how to join with other tables. This refers to the JOIN clause in an SQL statement.
-	 * For example, <code>'LEFT JOIN users ON users.id=authorID'</code>.
+	 * For example, <code>'LEFT JOIN user ON user.id=authorID'</code>.
 	 * @since 1.1.3
 	 */
 	public $join='';

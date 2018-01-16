@@ -32,7 +32,7 @@ class User extends CActiveRecord
 			'roles'=>array(self::HAS_MANY,'Role','user_id'),
 			'groups'=>array(self::HAS_MANY,'Group',array('group_id'=>'id'),'through'=>'roles'),
 			'mentorships'=>array(self::HAS_MANY,'Mentorship','teacher_id','joinType'=>'INNER JOIN'),
-			'students'=>array(self::HAS_MANY,'User',array('student_id'=>'id'),'through'=>'mentorships','joinType'=>'INNER JOIN'),
+			'students'=>array(self::HAS_MANY,'user',array('student_id'=>'id'),'through'=>'mentorships','joinType'=>'INNER JOIN'),
 			'profiles'=>array(self::HAS_MANY,'Profile','user_id'),
 			'posts'=>array(self::HAS_MANY,'Post','author_id'),
 			'postsCondition'=>array(self::HAS_MANY,'Post','author_id', 'condition'=>'postsCondition.id IN (2,3)'),
@@ -41,7 +41,7 @@ class User extends CActiveRecord
 			'postCount'=>array(self::STAT,'Post','author_id'),
 			/* For {@link CActiveRecordTest::testHasManyThroughHasManyWithCustomSelect()}: */
 			'mentorshipsCustomSelect'=>array(self::HAS_MANY,'Mentorship','teacher_id','select' => array('teacher_id', 'student_id')),
-			'studentsCustomSelect'=>array(self::HAS_MANY,'User',array('student_id'=>'id'),'through'=>'mentorshipsCustomSelect','select' => array('id', 'username')),
+			'studentsCustomSelect'=>array(self::HAS_MANY,'user',array('student_id'=>'id'),'through'=>'mentorshipsCustomSelect','select' => array('id', 'username')),
 			/* For {@link CActiveRecordTest::testRelationalStatWithScopes}: */
 			'recentPostCount1'=>array(self::STAT,'Post','author_id','scopes'=>'recentScope'), // CStatRelation with scopes, HAS_MANY case
 			'recentPostCount2'=>array(self::STAT,'Post','author_id','scopes'=>array('recentScope')), // CStatRelation with scopes, HAS_MANY case
@@ -50,7 +50,7 @@ class User extends CActiveRecord
 
 	public function tableName()
 	{
-		return 'users';
+		return 'user';
 	}
 
 	public function scopes()
@@ -100,12 +100,12 @@ class Group extends CActiveRecord
 	{
 		return array(
 			'roles'=>array(self::HAS_MANY,'Role','group_id'),
-			'users'=>array(self::HAS_MANY,'User',array('user_id'=>'id'),'through'=>'roles'),
-			'comments'=>array(self::HAS_MANY,'Comment',array('id'=>'author_id'),'through'=>'users'),
+			'user'=>array(self::HAS_MANY,'user',array('user_id'=>'id'),'through'=>'roles'),
+			'comments'=>array(self::HAS_MANY,'Comment',array('id'=>'author_id'),'through'=>'user'),
 			'description'=>array(self::HAS_ONE,'GroupDescription','group_id'),
 			/* Support for {@link CActiveRecordTest::testLazyLoadThroughRelationWithCondition()}: */
 			'rolesWhichEmptyByCondition'=>array(self::HAS_MANY,'Role','group_id','condition'=>'2=:compareValue','params'=>array(':compareValue'=>1)),
-			'usersWhichEmptyByCondition'=>array(self::HAS_MANY,'User',array('user_id'=>'id'),'through'=>'rolesWhichEmptyByCondition'),
+			'usersWhichEmptyByCondition'=>array(self::HAS_MANY,'user',array('user_id'=>'id'),'through'=>'rolesWhichEmptyByCondition'),
 		);
 	}
 
@@ -187,7 +187,7 @@ class Post extends CActiveRecord
 	public function relations()
 	{
 		return array(
-			'author'=>array(self::BELONGS_TO,'User','author_id'),
+			'author'=>array(self::BELONGS_TO,'user','author_id'),
 			'firstComment'=>array(self::HAS_ONE,'Comment','post_id','order'=>'firstComment.content'),
 			'comments'=>array(self::HAS_MANY,'Comment','post_id','order'=>'comments.content DESC'),
 			'commentCount'=>array(self::STAT,'Comment','post_id'),
@@ -341,7 +341,7 @@ class UserSpecial extends CActiveRecord
 
 	public function tableName()
 	{
-		return 'users';
+		return 'user';
 	}
 }
 
@@ -392,9 +392,9 @@ class Comment extends CActiveRecord
 	{
 		return array(
 			'post'=>array(self::BELONGS_TO,'Post','post_id'),
-			'author'=>array(self::BELONGS_TO,'User','author_id'),
-			'postAuthor'=>array(self::HAS_ONE,'User',array('author_id'=>'id'),'through'=>'post'),
-			'postAuthorBelongsTo'=>array(self::BELONGS_TO,'User',array('author_id'=>'id'),'through'=>'post'),
+			'author'=>array(self::BELONGS_TO,'user','author_id'),
+			'postAuthor'=>array(self::HAS_ONE,'user',array('author_id'=>'id'),'through'=>'post'),
+			'postAuthorBelongsTo'=>array(self::BELONGS_TO,'user',array('author_id'=>'id'),'through'=>'post'),
 		);
 	}
 
@@ -542,7 +542,7 @@ class Content extends CActiveRecord
 		return array(
 			'parent'=>array(self::BELONGS_TO,'Content','parentID'),
 			'children'=>array(self::HAS_MANY,'Content','parentID'),
-			'owner'=>array(self::BELONGS_TO,'User','ownerID'),
+			'owner'=>array(self::BELONGS_TO,'user','ownerID'),
 		);
 	}
 }
@@ -567,7 +567,7 @@ class Article extends Content
 	public function relations()
 	{
 		return array(
-			'author'=>array(self::BELONGS_TO,'User','authorID'),
+			'author'=>array(self::BELONGS_TO,'user','authorID'),
 			'comments'=>array(self::HAS_MANY,'ArticleComment','parentID'),
 		);
 	}
@@ -593,7 +593,7 @@ class ArticleComment extends Content
 	public function relations()
 	{
 		return array(
-			'author'=>array(self::BELONGS_TO,'User','authorID'),
+			'author'=>array(self::BELONGS_TO,'user','authorID'),
 			'article'=>array(self::BELONGS_TO,'Article','parentID'),
 		);
 	}
@@ -621,7 +621,7 @@ class UserNoFk extends CActiveRecord
 
 	public function tableName()
 	{
-		return 'users';
+		return 'user';
 	}
 }
 
@@ -674,7 +674,7 @@ class UserNoTogether extends CActiveRecord
 
 	public function tableName()
 	{
-		return 'users';
+		return 'user';
 	}
 }
 
@@ -734,7 +734,7 @@ class UserWithWrappers extends CActiveRecord
 
 	public function tableName()
 	{
-		return 'users';
+		return 'user';
 	}
 
 	protected function beforeFind()
@@ -998,7 +998,7 @@ class UserWithDefaultScopeAlias extends CActiveRecord
 
 	public function tableName()
 	{
-		return 'users';
+		return 'user';
 	}
 
 	public function defaultScope()

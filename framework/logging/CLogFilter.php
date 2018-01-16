@@ -100,7 +100,7 @@ class CLogFilter extends CComponent implements ILogFilter
 	{
 		$context=array();
 		if($this->logUser && ($user=Yii::app()->getComponent('user',false))!==null)
-			$context[]='User: '.$user->getName().' (ID: '.$user->getId().')';
+			$context[]='user: '.$user->getName().' (ID: '.$user->getId().')';
 
 		if($this->dumper==='var_export' || $this->dumper==='print_r')
 		{

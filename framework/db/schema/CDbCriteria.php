@@ -71,7 +71,7 @@ class CDbCriteria extends CComponent
 	public $group='';
 	/**
 	 * @var string how to join with other tables. This refers to the JOIN clause in an SQL statement.
-	 * For example, <code>'LEFT JOIN users ON users.id=authorID'</code>.
+	 * For example, <code>'LEFT JOIN user ON user.id=authorID'</code>.
 	 */
 	public $join='';
 	/**

@@ -42,12 +42,12 @@
  * @property string $serverName Server name.
  * @property integer $serverPort Server port number.
  * @property string $urlReferrer URL referrer, null if not present.
- * @property string $userAgent User agent, null if not present.
- * @property string $userHostAddress User IP address.
- * @property string $userHost User host name, null if cannot be determined.
+ * @property string $userAgent user agent, null if not present.
+ * @property string $userHostAddress user IP address.
+ * @property string $userHost user host name, null if cannot be determined.
  * @property string $scriptFile Entry script file path (processed w/ realpath()).
- * @property array $browser User browser capabilities.
- * @property string $acceptTypes User browser accept types, null if not present.
+ * @property array $browser user browser capabilities.
+ * @property string $acceptTypes user browser accept types, null if not present.
  * @property integer $port Port number for insecure requests.
  * @property integer $securePort Port number for secure requests.
  * @property CCookieCollection|CHttpCookie[] $cookies The cookie collection.
@@ -758,7 +758,7 @@ class CHttpRequest extends CApplicationComponent
 	/**
 	 * Returns information about the capabilities of user browser.
 	 * @param string $userAgent the user agent to be analyzed. Defaults to null, meaning using the
-	 * current User-Agent HTTP header information.
+	 * current user-Agent HTTP header information.
 	 * @return array user browser capabilities.
 	 * @see http://www.php.net/manual/en/function.get-browser.php
 	 */

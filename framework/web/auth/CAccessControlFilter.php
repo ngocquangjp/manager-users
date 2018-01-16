@@ -33,8 +33,8 @@
  *   'controllers'=>array('post', 'admin/user'),
  * 
  *   // optional, list of usernames (case insensitive) that this rule applies to
- *   // Use * to represent all users, ? guest users, and @ authenticated users
- *   'users'=>array('thomas', 'kevin'),
+ *   // Use * to represent all user, ? guest user, and @ authenticated user
+ *   'user'=>array('thomas', 'kevin'),
  * 
  *   // optional, list of roles (case sensitive!) that this rule applies to.
  *   'roles'=>array('admin', 'editor'),
@@ -209,7 +209,7 @@ class CAccessRule extends CComponent
 	public $controllers;
 	/**
 	 * @var array list of user names that this rule applies to. The comparison is case-insensitive.
-	 * If no user names are specified, rule applies to all users.
+	 * If no user names are specified, rule applies to all user.
 	 */
 	public $users;
 	/**

@@ -58,7 +58,7 @@ class CPostgresTest extends CTestCase
 		$this->assertEquals('posts',$table->name);
 		$this->assertEquals('"test"."posts"',$table->rawName);
 		$this->assertEquals('id',$table->primaryKey);
-		$this->assertEquals(array('author_id'=>array('users','id')),$table->foreignKeys);
+		$this->assertEquals(array('author_id'=>array('user','id')),$table->foreignKeys);
 		$this->assertEquals('test.posts_id_seq',$table->sequenceName);
 		$this->assertEquals(5,count($table->columns));
 
@@ -235,36 +235,36 @@ class CPostgresTest extends CTestCase
 
 	public function testResetSequence()
 	{
-		$max=$this->db->createCommand("SELECT MAX(id) FROM test.users")->queryScalar();
-		$this->db->createCommand("DELETE FROM test.users")->execute();
-		$this->db->createCommand("INSERT INTO test.users (username, password, email) VALUES ('user4','pass4','email4')")->execute();
-		$max2=$this->db->createCommand("SELECT MAX(id) FROM test.users")->queryScalar();
+		$max=$this->db->createCommand("SELECT MAX(id) FROM test.user")->queryScalar();
+		$this->db->createCommand("DELETE FROM test.user")->execute();
+		$this->db->createCommand("INSERT INTO test.user (username, password, email) VALUES ('user4','pass4','email4')")->execute();
+		$max2=$this->db->createCommand("SELECT MAX(id) FROM test.user")->queryScalar();
 		$this->assertEquals($max+1,$max2);
 
-		$userTable=$this->db->schema->getTable('test.users');
+		$userTable=$this->db->schema->getTable('test.user');
 
-		$this->db->createCommand("DELETE FROM test.users")->execute();
+		$this->db->createCommand("DELETE FROM test.user")->execute();
 		$this->db->schema->resetSequence($userTable);
-		$this->db->createCommand("INSERT INTO test.users (username, password, email) VALUES ('user4','pass4','email4')")->execute();
-		$max=$this->db->createCommand("SELECT MAX(id) FROM test.users")->queryScalar();
+		$this->db->createCommand("INSERT INTO test.user (username, password, email) VALUES ('user4','pass4','email4')")->execute();
+		$max=$this->db->createCommand("SELECT MAX(id) FROM test.user")->queryScalar();
 		$this->assertEquals(1,$max);
-		$this->db->createCommand("INSERT INTO test.users (username, password, email) VALUES ('user4','pass4','email4')")->execute();
-		$max=$this->db->createCommand("SELECT MAX(id) FROM test.users")->queryScalar();
+		$this->db->createCommand("INSERT INTO test.user (username, password, email) VALUES ('user4','pass4','email4')")->execute();
+		$max=$this->db->createCommand("SELECT MAX(id) FROM test.user")->queryScalar();
 		$this->assertEquals(2,$max);
 
-		$this->db->createCommand("DELETE FROM test.users")->execute();
+		$this->db->createCommand("DELETE FROM test.user")->execute();
 		$this->db->schema->resetSequence($userTable,10);
-		$this->db->createCommand("INSERT INTO test.users (username, password, email) VALUES ('user4','pass4','email4')")->execute();
-		$max=$this->db->createCommand("SELECT MAX(id) FROM test.users")->queryScalar();
+		$this->db->createCommand("INSERT INTO test.user (username, password, email) VALUES ('user4','pass4','email4')")->execute();
+		$max=$this->db->createCommand("SELECT MAX(id) FROM test.user")->queryScalar();
 		$this->assertEquals(10,$max);
-		$this->db->createCommand("INSERT INTO test.users (username, password, email) VALUES ('user4','pass4','email4')")->execute();
-		$max=$this->db->createCommand("SELECT MAX(id) FROM test.users")->queryScalar();
+		$this->db->createCommand("INSERT INTO test.user (username, password, email) VALUES ('user4','pass4','email4')")->execute();
+		$max=$this->db->createCommand("SELECT MAX(id) FROM test.user")->queryScalar();
 		$this->assertEquals(11,$max);
 	}
 
 	public function testColumnComments()
 	{
-		$usersColumns=$this->db->schema->getTable('test.users')->columns;
+		$usersColumns=$this->db->schema->getTable('test.user')->columns;
 
 		$this->assertEquals('',$usersColumns['id']->comment);
 		$this->assertEquals('Name of the user',$usersColumns['username']->comment);

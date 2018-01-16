@@ -26,7 +26,7 @@ class GameController extends CController
 
 	/**
 	 * The 'play' action.
-	 * In this action, users are asked to choose a difficulty level
+	 * In this action, user are asked to choose a difficulty level
 	 * of the game.
 	 */
 	public function actionPlay()

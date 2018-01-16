@@ -29,7 +29,7 @@ Yii::import('CHtml',true);
  * Development views are displayed when the application is in debug mode
  * (i.e. YII_DEBUG is defined as true). Detailed error information with source code
  * are displayed in these views. Production views are meant to be shown
- * to end-users and are used when the application is in production mode.
+ * to end-user and are used when the application is in production mode.
  * For security reasons, they only display the error message without any
  * sensitive information.
  *
@@ -68,7 +68,7 @@ class CErrorHandler extends CApplicationComponent
 	public $maxTraceSourceLines = 10;
 
 	/**
-	 * @var string the application administrator information (could be a name or email link). It is displayed in error pages to end users. Defaults to 'the webmaster'.
+	 * @var string the application administrator information (could be a name or email link). It is displayed in error pages to end user. Defaults to 'the webmaster'.
 	 */
 	public $adminInfo='the webmaster';
 	/**
@@ -263,13 +263,13 @@ class CErrorHandler extends CApplicationComponent
 					$type = 'PHP notice';
 					break;
 				case E_USER_ERROR:
-					$type = 'User error';
+					$type = 'user error';
 					break;
 				case E_USER_WARNING:
-					$type = 'User warning';
+					$type = 'user warning';
 					break;
 				case E_USER_NOTICE:
-					$type = 'User notice';
+					$type = 'user notice';
 					break;
 				case E_RECOVERABLE_ERROR:
 					$type = 'Recoverable error';
